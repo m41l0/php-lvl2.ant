@@ -1,0 +1,1 @@
+<?phpinclude_once('inc/C_Page.php');$action = 'action_';$action .= (isset($_GET['act'])) ? $_GET['act'] : 'index';// switch ($_GET['c']){	case 'page':		$controller = new C_Page();		break;	default:		$controller = new C_Page();}$controller->$action();$controller->render();
