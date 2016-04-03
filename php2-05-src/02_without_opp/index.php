@@ -1,1 +1,20 @@
-<?phpinclude_once('inc/model.php');include_once('inc/view.php');// Информация для отображения.$title = 'Название сайта::Чтение';$text = text_get();// Внутренний шаблон.$content = view_include(	'theme/v_index.php',	array('text' => $text));// Внешний шаблон.$page = view_include(	'theme/v_main.php', 	array('title' => $title, 'content' => $content));// Вывод.echo $page;
+<?php
+include_once('inc/model.php');
+include_once('inc/view.php');
+
+// РРЅС„РѕСЂРјР°С†РёСЏ РґР»СЏ РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ.
+$title = 'РќР°Р·РІР°РЅРёРµ СЃР°Р№С‚Р°::Р§С‚РµРЅРёРµ';
+$text = text_get();
+
+// Р’РЅСѓС‚СЂРµРЅРЅРёР№ С€Р°Р±Р»РѕРЅ.
+$content = view_include(
+	'theme/v_index.php',
+	array('text' => $text));
+
+// Р’РЅРµС€РЅРёР№ С€Р°Р±Р»РѕРЅ.
+$page = view_include(
+	'theme/v_main.php', 
+	array('title' => $title, 'content' => $content));
+
+// Р’С‹РІРѕРґ.
+echo $page;

@@ -1,1 +1,30 @@
-<?phpinclude_once('inc/Controller.php');//// Áàçîâûé êîíòðîëëåð ñàéòà.//abstract class C_Base extends Controller{	protected $title;		// çàãîëîâîê ñòðàíèöû	protected $content;		// ñîäåðæàíèå ñòðàíèöû	//	// Êîíñòðóêòîð.	//	function __construct()	{				$this->title = 'Íàçâàíèå ñàéòà';		$this->content = '';	}		//	// Ãåíåðàöèÿ áàçîâîãî øàáëîíàû	//		public function render()	{		$vars = array('title' => $this->title, 'content' => $this->content);			$page = $this->Template('theme/v_main.php', $vars);						echo $page;	}	}
+<?php
+include_once('inc/Controller.php');
+
+//
+// Ð‘Ð°Ð·Ð¾Ð²Ñ‹Ð¹ ÐºÐ¾Ð½Ñ‚Ñ€Ð¾Ð»Ð»ÐµÑ€ ÑÐ°Ð¹Ñ‚Ð°.
+//
+abstract class C_Base extends Controller
+{
+	protected $title;		// Ð·Ð°Ð³Ð¾Ð»Ð¾Ð²Ð¾Ðº ÑÑ‚Ñ€Ð°Ð½Ð¸Ñ†Ñ‹
+	protected $content;		// ÑÐ¾Ð´ÐµÑ€Ð¶Ð°Ð½Ð¸Ðµ ÑÑ‚Ñ€Ð°Ð½Ð¸Ñ†Ñ‹
+
+	//
+	// ÐšÐ¾Ð½ÑÑ‚Ñ€ÑƒÐºÑ‚Ð¾Ñ€.
+	//
+	function __construct()
+	{		
+		$this->title = 'ÐÐ°Ð·Ð²Ð°Ð½Ð¸Ðµ ÑÐ°Ð¹Ñ‚Ð°';
+		$this->content = '';
+	}
+	
+	//
+	// Ð“ÐµÐ½ÐµÑ€Ð°Ñ†Ð¸Ñ Ð±Ð°Ð·Ð¾Ð²Ð¾Ð³Ð¾ ÑˆÐ°Ð±Ð»Ð¾Ð½Ð°Ñ‹
+	//	
+	public function render()
+	{
+		$vars = array('title' => $this->title, 'content' => $this->content);	
+		$page = $this->Template('theme/v_main.php', $vars);				
+		echo $page;
+	}	
+}

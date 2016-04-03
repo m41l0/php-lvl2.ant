@@ -1,1 +1,29 @@
-<?phpinclude_once('inc/model.php');include_once('inc/view.php');// Обработка отправки формы.if (!empty($_POST)){	$text = $_POST['text'];	text_set($text);	header('Location: index.php');	die();}// Информация для отображения.$title = 'Название сайта::Редактирование';$text = text_get();// Внутренний шаблон.$content = view_include(	'theme/v_edit.php', 	array('text' => $text));// Внешний шаблон.$page = view_include(	'theme/v_main.php', 	array('title' => $title, 'content' => $content));// Вывод.echo $page;
+<?php
+include_once('inc/model.php');
+include_once('inc/view.php');
+
+// РћР±СЂР°Р±РѕС‚РєР° РѕС‚РїСЂР°РІРєРё С„РѕСЂРјС‹.
+if (!empty($_POST))
+{
+	$text = $_POST['text'];
+	text_set($text);
+	header('Location: index.php');
+	die();
+}
+
+// РРЅС„РѕСЂРјР°С†РёСЏ РґР»СЏ РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ.
+$title = 'РќР°Р·РІР°РЅРёРµ СЃР°Р№С‚Р°::Р РµРґР°РєС‚РёСЂРѕРІР°РЅРёРµ';
+$text = text_get();
+
+// Р’РЅСѓС‚СЂРµРЅРЅРёР№ С€Р°Р±Р»РѕРЅ.
+$content = view_include(
+	'theme/v_edit.php', 
+	array('text' => $text));
+
+// Р’РЅРµС€РЅРёР№ С€Р°Р±Р»РѕРЅ.
+$page = view_include(
+	'theme/v_main.php', 
+	array('title' => $title, 'content' => $content));
+
+// Р’С‹РІРѕРґ.
+echo $page;

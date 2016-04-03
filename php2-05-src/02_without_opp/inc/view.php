@@ -1,1 +1,18 @@
-<?php//// Подключение шаблона.//function view_include($fileName, $vars = array()){	// Установка переменных для шаблона.	foreach ($vars as $k => $v)	{		$$k = $v;	}	// Генерация HTML в строку.	ob_start();	include $fileName;	return ob_get_clean();	}
+<?php
+//
+// РџРѕРґРєР»СЋС‡РµРЅРёРµ С€Р°Р±Р»РѕРЅР°.
+//
+function view_include($fileName, $vars = array())
+{
+	// РЈСЃС‚Р°РЅРѕРІРєР° РїРµСЂРµРјРµРЅРЅС‹С… РґР»СЏ С€Р°Р±Р»РѕРЅР°.
+	foreach ($vars as $k => $v)
+	{
+		$$k = $v;
+	}
+
+	// Р“РµРЅРµСЂР°С†РёСЏ HTML РІ СЃС‚СЂРѕРєСѓ.
+	ob_start();
+	include $fileName;
+	return ob_get_clean();	
+}
+

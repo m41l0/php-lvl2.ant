@@ -1,1 +1,35 @@
-<?php//// Êîíòòðîëëåð ñòðàíèöû ÷òåíèÿ.//include_once('inc/model.php');class C_Page extends C_Base{	//	// Êîíñòðóêòîð.	//	function __construct(){				parent::__construct();	}		public function action_index(){		$this->title .= '::×òåíèå';		$text = text_get();		$this->content = $this->Template('theme/v_index.php', array('text' => $text));		}		public function action_edit(){		$this->title .= '::Ðåäàêòèðîâàíèå';				if($this->isPost())		{			text_set($_POST['text']);			header('location: index.php');			exit();		}				$text = text_get();		$this->content = $this->Template('theme/v_edit.php', array('text' => $text));			}}
+<?php
+//
+// ÐšÐ¾Ð½Ñ‚Ñ‚Ñ€Ð¾Ð»Ð»ÐµÑ€ ÑÑ‚Ñ€Ð°Ð½Ð¸Ñ†Ñ‹ Ñ‡Ñ‚ÐµÐ½Ð¸Ñ.
+//
+include_once('inc/model.php');
+
+class C_Page extends C_Base
+{
+	//
+	// ÐšÐ¾Ð½ÑÑ‚Ñ€ÑƒÐºÑ‚Ð¾Ñ€.
+	//
+	function __construct(){		
+		parent::__construct();
+	}
+	
+	public function action_index(){
+		$this->title .= '::Ð§Ñ‚ÐµÐ½Ð¸Ðµ';
+		$text = text_get();
+		$this->content = $this->Template('theme/v_index.php', array('text' => $text));	
+	}
+	
+	public function action_edit(){
+		$this->title .= '::Ð ÐµÐ´Ð°ÐºÑ‚Ð¸Ñ€Ð¾Ð²Ð°Ð½Ð¸Ðµ';
+		
+		if($this->isPost())
+		{
+			text_set($_POST['text']);
+			header('location: index.php');
+			exit();
+		}
+		
+		$text = text_get();
+		$this->content = $this->Template('theme/v_edit.php', array('text' => $text));		
+	}
+}
