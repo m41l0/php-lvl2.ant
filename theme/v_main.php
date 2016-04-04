@@ -21,7 +21,7 @@
 
 	<div id="menu">
 		<a href="index.php">Статьи</a> |
-		<a href="add.php">Добавить статью</a>
+		<a href="index.php?act=add">Добавить статью</a>
 	</div>
 
 	<div id="content">
