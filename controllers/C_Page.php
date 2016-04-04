@@ -3,7 +3,6 @@
 // Конттроллер страницы чтения.
 //
 include_once __DIR__ . '/../models/Articles.php';
-include_once __DIR__ . '/C_Base.php';
 
 class C_Page extends C_Base
 {

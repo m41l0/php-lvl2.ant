@@ -1,11 +1,9 @@
 <?php
 
-include_once __DIR__ . '/Controller.php';
-
 //
 // Базовый контроллер сайта.
 //
-abstract class C_Base extends Controller
+abstract class C_Base extends C_Controller
 {
     protected $title;		// заголовок страницы
     protected $content;		// содержание страницы
@@ -14,6 +12,10 @@ abstract class C_Base extends Controller
     // Конструктор.
     //
     public function __construct()
+    {
+    }
+
+    protected function before()
     {
         $this->title = 'Название сайта';
         $this->content = '';

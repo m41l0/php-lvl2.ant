@@ -3,11 +3,21 @@
 //
 // Базовый класс контроллера.
 //
-abstract class Controller
+abstract class C_Controller
 {
     // Генерация внешнего шаблона
-    abstract function render();
+    protected abstract function render();
 
+    // Функция отрабатывающая до основного метода
+    protected abstract function before();
+
+    public function Request($action)
+    {
+        $this->before();
+        $this->$action();
+        $this->render();
+    }   
+    
     //
     // Запрос произведен методом GET?
     //
