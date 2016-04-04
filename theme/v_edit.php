@@ -2,12 +2,21 @@
 /**
  * Шаблон редактора
  * ================
- * $text - текст статьи
  */
 ?>
 
+<h1><?= $article->title ?></h1>
 <form method="post">
-	<textarea name="text"><?=$text?></textarea>
-	<br/>
+	Название:
+	<br>
+	<input type="text" name="title" value="<?= $article->title ?>" size="70" required>
+	<br>
+	<br>
+	Содержание:
+	<br>
+	<textarea name="content" cols="80" rows="8" required><?= $article->content ?></textarea>
+	<br>
 	<input type="submit" value="Сохранить">
 </form>
+<hr>
+<a href="./index.php"><= К списку статей</a>

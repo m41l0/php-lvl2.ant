@@ -2,17 +2,11 @@
 /**
  * Шаблон главной страницы
  * =======================
- * $text - текст
  */
-//?>
-<!---->
-<?//=nl2br($text)?>
 
-
-
-<?php foreach ($articles as $article): ?>
+foreach ($articles as $article): ?>
     <article>
-        <h3><?= $article->title ?></h3>
+        <h3><a href="./article.php?ctrl=Page&id=<?= $article->id_article ?>"><?= $article->title ?></a></h3>
         <em>Опубликовано: <?= $article->date ?> | Просмотров: <?= $article->views ?></em>
         <br>
     </article>

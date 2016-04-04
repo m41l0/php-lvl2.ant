@@ -2,8 +2,6 @@
 /**
  * Основной шаблон
  * ===============
- * $title - заголовок
- * $content - HTML страницы
  */
 ?>
 
@@ -22,8 +20,8 @@
 	</div>
 
 	<div id="menu">
-		<a href="index.php">Читать текст</a> |
-		<a href="edit.php">Редактировать текст</a>
+		<a href="index.php">Статьи</a> |
+		<a href="add.php">Добавить статью</a>
 	</div>
 
 	<div id="content">
