@@ -6,7 +6,7 @@
 
 foreach ($articles as $article): ?>
     <article>
-        <h3><a href="./article.php?ctrl=Page&id=<?= $article->id_article ?>"><?= $article->title ?></a></h3>
+        <h3><a href="./index.php?ctrl=Page&act=article&id=<?= $article->id_article ?>"><?= $article->title ?></a></h3>
         <em>Опубликовано: <?= $article->date ?> | Просмотров: <?= $article->views ?></em>
         <br>
     </article>
