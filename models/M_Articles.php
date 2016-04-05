@@ -1,6 +1,6 @@
 <?php
 
-class Articles
+class M_Articles
 {
     public $id_article;
 //    public $title;
@@ -11,7 +11,7 @@ class Articles
     {
         $db = new DB;
         $sql = "SELECT * FROM `articles` ORDER BY `date` DESC";
-        return $db->queryAll($sql, 'Articles');
+        return $db->queryAll($sql, 'M_Articles');
     }
 
     // Получение статей по id
@@ -19,7 +19,7 @@ class Articles
     {
         $db = new DB;
         $sql = "SELECT * FROM `articles` WHERE `id_article` = '" . $id . "'";
-        return $db->queryOne($sql, 'Articles');
+        return $db->queryOne($sql, 'M_Articles');
     }
 
     // Добавление статьи

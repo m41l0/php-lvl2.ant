@@ -2,7 +2,8 @@
 //
 // Конттроллер страницы чтения.
 //
-include_once __DIR__ . '/../models/Articles.php';
+//TODO Удалить подключение файла
+//include_once __DIR__ . '/../models/M_Articles.php';
 
 class C_Page extends C_Base
 {
@@ -17,7 +18,7 @@ class C_Page extends C_Base
     public function action_index()
     {
         $this->title .= '::Чтение';
-        $articles = Articles::getAll();
+        $articles = M_Articles::getAll();
         $this->content = $this->template('theme/v_index.php', array('articles' => $articles));
     }
 
@@ -26,7 +27,7 @@ class C_Page extends C_Base
         $this->title .= '::Статья';
         if ($this->IsGet()) {
             $id = $_GET['id'];
-            $article = Articles::getOne($id);
+            $article = M_Articles::getOne($id);
             $this->content = $this->template('theme/v_article.php', array('article' => $article));
         }
     }
@@ -37,7 +38,7 @@ class C_Page extends C_Base
 
         // Обработка отправки формы.
         if ($this->IsPost()) {
-            if (Articles::articleAdd($_POST['title'], $_POST['content'])) {
+            if (M_Articles::articleAdd($_POST['title'], $_POST['content'])) {
                 header('Location: index.php');
                 die();
             }
@@ -63,12 +64,12 @@ class C_Page extends C_Base
 
         if (!empty($_GET['id'])) {
             $id = (int)$_GET['id'];
-            $article = Articles::getOne($id);
+            $article = M_Articles::getOne($id);
             if (!empty($_POST)) {
                 $title = $_POST['title'];
                 $content = $_POST['content'];
 
-                Articles::articleEdit($id, $title, $content);
+                M_Articles::articleEdit($id, $title, $content);
                 header('Location: index.php');
             }
         } else header('Location: index.php');
@@ -80,7 +81,7 @@ class C_Page extends C_Base
     {
         if (!empty($_GET['id'])) {
             $id = (int)$_GET['id'];
-            Articles::articleDelete($id);
+            M_Articles::articleDelete($id);
             header('Location: index.php');
         } else echo 'Упс! Какая-то ошибка!';
     }
