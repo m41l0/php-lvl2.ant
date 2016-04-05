@@ -2,9 +2,29 @@
 
 class M_Articles
 {
-    public $id_article;
-//    public $title;
-//    public $content;
+//    public $id_article;
+
+    private static $instance;
+    
+    public static function instance()
+    {
+        if (self::$instance == null) {
+            self::$instance = new M_Articles();
+        }
+        return self::$instance;
+    }
+
+    private function __construct() {
+        // приватный конструктор ограничивает реализацию getInstance()
+    }
+
+    protected function __clone() {
+        // ограничивает клонирование объекта
+    }
+
+    private function __wakeup() {
+        // ограничивает клонирование объекта
+    }
 
     // Получение всех статей
     public static function getAll()
