@@ -11,7 +11,7 @@
 	<meta charset="UTF-8">
 	<title><?=$title?></title>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-	<link rel="stylesheet" href="style.css">
+	<link rel="stylesheet" href="theme/style.css">
 </head>
 <body>
 <div class="inner">

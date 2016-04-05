@@ -7,7 +7,9 @@
  */
 
 function __autoload($className){
-    require_once __DIR__ . '/controllers/' . $className . '.php';
+    var_dump($className);die;
+    include_once __DIR__ . '/controllers/' . $className . '.php';
+    include_once __DIR__ . '/models/' . $className . '.php';
 }
 
 $ctrl = isset($_GET['ctrl']) ? $_GET['ctrl'] : 'Page';
@@ -17,12 +19,5 @@ $controllerClassName = 'C_' . $ctrl;
 $controller = new $controllerClassName();
 
 $method = 'action_' . $act;
-$controller->$method();
-$controller->render();
 
-/**
- *     Не могу найти ошибку. Объекты класса C_Page не наследуют title и
- *     content из метода before()
- */
-//var_dump($controller);die;
-//$controller->Request($act);
+$controller->Request($method);
