@@ -2,8 +2,6 @@
 //
 // Конттроллер страницы чтения.
 //
-//TODO Удалить подключение файла
-//include_once __DIR__ . '/../models/M_Articles.php';
 
 class C_Page extends C_Base
 {

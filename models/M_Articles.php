@@ -2,44 +2,20 @@
 
 class M_Articles
 {
-//    public $id_article;
-
-    private static $instance;
-    
-    public static function instance()
-    {
-        if (self::$instance == null) {
-            self::$instance = new M_Articles();
-        }
-        return self::$instance;
-    }
-
-    private function __construct() {
-        // приватный конструктор ограничивает реализацию getInstance()
-    }
-
-    protected function __clone() {
-        // ограничивает клонирование объекта
-    }
-
-    private function __wakeup() {
-        // ограничивает клонирование объекта
-    }
-
     // Получение всех статей
     public static function getAll()
     {
-        $db = new DB;
+        $db = M_Mysql::getInstance();
         $sql = "SELECT * FROM `articles` ORDER BY `date` DESC";
-        return $db->queryAll($sql, 'M_Articles');
+        return $db->select($sql, 'M_Articles');
     }
 
-    // Получение статей по id
+    // Получение статьи по id
     public static function getOne($id)
     {
-        $db = new DB;
+        $db = M_Mysql::getInstance();
         $sql = "SELECT * FROM `articles` WHERE `id_article` = '" . $id . "'";
-        return $db->queryOne($sql, 'M_Articles');
+        return $db->select($sql, 'M_Articles')[0];
     }
 
     // Добавление статьи
@@ -53,20 +29,18 @@ class M_Articles
         if ($title == '')
             return false;
 
-        $db = new DB;
+        $db = M_Mysql::getInstance();
 
-        // Запрос
-        $sql = "
-        INSERT INTO `articles`
-        (`title`, `content`)
-        VALUES
-        ('" . $title . "', '" . $content . "')
-        ";
+        // Имя таблицы
+        $table = 'articles';
 
-        return $db->query($sql);
+        // Данные для записи в БД
+        $object = ['title' => $title, 'content' => $content];
+
+        return $db->insert($table, $object);
     }
 
-    // == Редактирование статьи ==
+    // Редактирование статьи
     public static function articleEdit($id, $title, $content)
     {
         // Подготовка
@@ -78,18 +52,49 @@ class M_Articles
         if ($title == '')
             return false;
 
-        $db = new DB;
+        $db = M_Mysql::getInstance();
 
-        // Запрос
-        $sql = "UPDATE `articles` SET `title`='" . $title . "', `content`='" . $content . "' WHERE `id_article`='" . $id . "'";
-        return $db->query($sql);
+        // Имя таблицы
+        $table = 'articles';
+
+        // Данные для записи в БД
+        $object = ['title' => $title, 'content' => $content];
+
+        // Условие
+        $where = '`id_article` = ' . $id;
+
+        return $db->update($table, $object, $where);
     }
 
-    // == Удаление статьи ==
+    // Удаление статьи
     public static function articleDelete($id)
     {
-        $db = new DB;
-        $sql = "DELETE FROM `articles` WHERE `id_article` = '" . $id . "'";
-        return $db->query($sql);
+        $db = M_Mysql::getInstance();
+
+        // Имя таблицы
+        $table = 'articles';
+
+        // Условие
+        $where = '`id_article` = ' . $id;
+
+        return $db->delete($table, $where);
     }
+
+    // Интро статьи
+    public static function articleIntro($content, $max_words = 30)
+    {
+        $words = explode(' ', $content);
+
+        if (count($words) > $max_words && $max_words > 0) {
+            $content = implode(' ', array_slice($words, 0, $max_words)) . '...';
+        }
+
+        return $content;
+    }
+
+//    function counter($id)
+//    {
+//        $sql = "UPDATE `articles` SET `views`=`views`+1 WHERE `id_article`='".$id."'";
+//        sqlExec($sql);
+//    }
 }
