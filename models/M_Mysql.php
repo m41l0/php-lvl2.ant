@@ -33,24 +33,6 @@ class M_Mysql
         // ограничивает клонирование объекта
     }
     
-
-    // TODO Удалить комменты
-//    public function select($sql)
-//    {
-//        $res = $this->mysqli->query($sql);
-//
-//        if (!$res) {
-//            die($this->mysqli->error);
-//        }
-//
-//        $count = $res->num_rows;
-//
-//        $rows = [];
-//        for($i = 0; $i < $count; $i++) {
-//            $rows[] = $res->fetch_assoc();
-//        }
-//        return $rows;
-//    }
     // Выборка
     public function select($sql, $class = 'stdClass')
     {

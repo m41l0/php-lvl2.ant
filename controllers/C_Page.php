@@ -27,7 +27,20 @@ class C_Page extends C_Base
             $id = $_GET['id'];
             $article = M_Articles::getOne($id);
             $this->content = $this->template('theme/v_article.php', array('article' => $article));
+            M_Articles::counter($id);
         }
+    }
+
+    // Интро статьи
+    public static function articleIntro($content, $max_words = 10)
+    {
+        $words = explode(' ', $content);
+
+        if (count($words) > $max_words && $max_words > 0) {
+            $content = implode(' ', array_slice($words, 0, $max_words)) . '...';
+        }
+
+        return $content;
     }
 
     public function action_add()

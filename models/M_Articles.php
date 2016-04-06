@@ -80,21 +80,15 @@ class M_Articles
         return $db->delete($table, $where);
     }
 
-    // Интро статьи
-    public static function articleIntro($content, $max_words = 30)
+    // Счетчик просмотров
+    public static function counter($id)
     {
-        $words = explode(' ', $content);
+        $id = (int)$id;
 
-        if (count($words) > $max_words && $max_words > 0) {
-            $content = implode(' ', array_slice($words, 0, $max_words)) . '...';
-        }
+        $db = M_Mysql::getInstance();
 
-        return $content;
+        $sql = "UPDATE `articles` SET `views`=`views`+1 WHERE `id_article`='" . $id . "'";
+
+        $db->mysqli->query($sql);
     }
-
-//    function counter($id)
-//    {
-//        $sql = "UPDATE `articles` SET `views`=`views`+1 WHERE `id_article`='".$id."'";
-//        sqlExec($sql);
-//    }
 }
