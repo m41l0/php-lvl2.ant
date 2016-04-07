@@ -5,3 +5,4 @@
     <a href="index.php?ctrl=Page&act=edit&id=<?= $article->id_article ?>">Редактировать</a> |
     <a href="index.php?ctrl=Page&act=delete&id=<?= $article->id_article ?>">Удалить</a>
 </article>
+<div><?=$commentsBlock?></div>

@@ -26,9 +26,28 @@ class C_Page extends C_Base
         if ($this->IsGet()) {
             $id = $_GET['id'];
             $article = M_Articles::getOne($id);
-            $this->content = $this->template('theme/v_article.php', array('article' => $article));
+            $comments = M_Comments::getAll($id);
+            $this->comments = $this->template('theme/v_comments.php', array('comments' => $comments));
+            $this->content = $this->template('theme/v_article.php', array('article' => $article, 'commentsBlock' => $this->comments));
             M_Articles::counter($id);
         }
+
+        // Обработка отправки формы.
+        if ($this->IsPost()) {
+            if (M_Comments::addComment($_GET['id'], $_POST['autor'], $_POST['text'])) {
+                header('Location: index.php');
+                die();
+            }
+
+//            $titl = $_POST['title'];
+//            $content = $_POST['content'];
+//            $error = true;
+        } else {
+//            $titl = '';
+//            $content = '';
+//            $error = false;
+        }
+
     }
 
     // Интро статьи

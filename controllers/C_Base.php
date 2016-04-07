@@ -7,6 +7,7 @@ abstract class C_Base extends C_Controller
 {
     protected $title;		// заголовок страницы
     protected $content;		// содержание страницы
+    protected $comments;		// комментарии
 
     //
     // Конструктор.
